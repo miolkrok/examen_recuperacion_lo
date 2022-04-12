@@ -34,6 +34,12 @@ public class BodegaServiceImpl implements IBodegaService{
 	public void borrarPorId(Integer id) {
 		// TODO Auto-generated method stub
 		this.bodRepo.borrarPorId(id);
+	}
+
+	@Override
+	public Bodega buscarBodegaPorNumero(String numero) {
+		// TODO Auto-generated method stub
+		return this.bodRepo.buscarBodegaPorNumero(numero);
 	}	
 
 }

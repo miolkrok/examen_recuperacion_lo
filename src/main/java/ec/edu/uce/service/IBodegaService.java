@@ -8,4 +8,5 @@ public interface IBodegaService {
 	void actualizar(Bodega bodega);
 	Bodega buscarPorId(Integer id);
 	void borrarPorId(Integer id);
+	Bodega buscarBodegaPorNumero(String numero);
 }

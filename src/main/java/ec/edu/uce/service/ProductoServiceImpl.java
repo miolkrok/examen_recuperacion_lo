@@ -44,6 +44,14 @@ public class ProductoServiceImpl implements IProductoService{
 	public List<Producto> buscarProductoTodos() {
 		// TODO Auto-generated method stub
 		return this.productosRepo.buscarProductoTodos();
-	}	
+	}
+
+	@Override
+	public Producto buscarProductoPorCodigoBarrasMaestro(String codigoBarrasMaestro) {
+		// TODO Auto-generated method stub
+		return this.productosRepo.buscarProductoPorCodigoBarrasMaestro(codigoBarrasMaestro);
+	}
+
+	
 
 }

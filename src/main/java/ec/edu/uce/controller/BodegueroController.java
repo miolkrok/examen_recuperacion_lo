@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ec.edu.uce.modelo.Bodega;
+
 import ec.edu.uce.modelo.Producto;
+import ec.edu.uce.service.IBodegaService;
 import ec.edu.uce.service.IBodegueroService;
 import ec.edu.uce.service.IProductoService;
 
@@ -24,6 +29,8 @@ public class BodegueroController {
 	private IBodegueroService bodegueroService;
 	@Autowired
 	private IProductoService productoService;
+	@Autowired
+	private IBodegaService bodegaService;
 	
 	@GetMapping("todos")
 	public String buscarTodos(Model modelo) {
@@ -32,7 +39,22 @@ public class BodegueroController {
 		modelo.addAttribute("productos", listaProductos);
 		return "productoInsertado";
 	}
+///////////////////////1////////////////////////////
+	@GetMapping("registrarBodega")
+	public String obtenerPaginaDatosBodega(Bodega bodega, Model modelo) {
+		
+		return "registrarBodega";
+	}
 
+	@PostMapping("bodegaRegistrada")
+	public String bodegaInsertada(Bodega bodega,BindingResult result, Model modelo, RedirectAttributes redirectAttributes) {
+		
+		this.bodegaService.insertar(bodega);
+//		redirectAttributes.addFlashAttribute("mensaje", "Producto Registrado");
+		return "redirect:registrarBodega";
+		
+
+	}
 	
 	///////////////////////2////////////////////////////
 	@GetMapping("insertarProducto")
@@ -42,13 +64,24 @@ public class BodegueroController {
 	}
 
 	@PostMapping("productoInsertado")
-	public String mostrarVuelos(Producto producto,BindingResult result, Model modelo, RedirectAttributes redirectAttributes) {
+	public String productosInsertados(Producto producto,BindingResult result, Model modelo, RedirectAttributes redirectAttributes) {
 		
 		this.productoService.insertar(producto);
-//		modelo.addAttribute("buscar", true);
 //		redirectAttributes.addFlashAttribute("mensaje", "Producto Registrado");
 		return "redirect:todos";
 
 	}
+///////////////////////3////////////////////////////
+	
+	@DeleteMapping("borrar/{codigoBarrasMaestro}")
+	public String eliminarProductoSinRegistro(@PathVariable("codigoBarrasMaestro")String codigoBarrasMaestro, Model modelo) {
+		this.bodegueroService.eliminarProductoSinRegistrado(codigoBarrasMaestro);
+						
+		List<Producto> listaProductos= this.productoService.buscarProductoTodos();
+		modelo.addAttribute("productos", listaProductos);
+		return "productoInsertado";
+		
+	}
+	
 
 }

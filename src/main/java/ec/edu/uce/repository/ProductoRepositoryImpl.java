@@ -54,4 +54,18 @@ public class ProductoRepositoryImpl implements IProductoRepo{
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public Producto buscarProductoPorCodigoBarrasMaestro(String codigoBarrasMaestro) {
+		// TODO Auto-generated method stub
+
+		TypedQuery<Producto> myQuery = this.entityManager
+				.createQuery("SELECT p FROM Producto p WHERE p.codigoBarrasMaestro=:codigoBarrasMaestro", Producto.class);
+
+		myQuery.setParameter("codigoBarrasMaestro", codigoBarrasMaestro);
+
+		return myQuery.getSingleResult();
+	}
+
+
+
 }

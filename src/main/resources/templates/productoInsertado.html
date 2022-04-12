@@ -30,8 +30,9 @@
 				<!----cuerpo de la tabla---->
 				<tbody>
 					<tr th:each=" producto : ${productos}">
-						<form action="#" th:action="@{/bodeguero/borrar/{id}(id=${producto.id}}" th:object="${producto}"
-							th:method="delete">
+						<form action="#"
+							th:action="@{/bodeguero/borrar/{codigoBarrasMaestro}(codigoBarrasMaestro=${producto.codigoBarrasMaestro}}"
+							th:object="${producto}" th:method="delete">
 							<td th:text="${producto.nombre}"></td>
 							<td th:text="${producto.codigoBarrasMaestro}"></td>
 							<td th:text="${producto.stock}"></td>

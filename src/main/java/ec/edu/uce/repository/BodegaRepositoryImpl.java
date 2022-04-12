@@ -2,6 +2,7 @@ package ec.edu.uce.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -38,5 +39,18 @@ public class BodegaRepositoryImpl implements IBodegaRepo{
 		Bodega borrar = this.buscarPorId(id);
 		this.entityManager.remove(borrar);
 	}
+
+	@Override
+	public Bodega buscarBodegaPorNumero(String numero) {
+		// TODO Auto-generated method stub
+		TypedQuery<Bodega> myQuery = this.entityManager
+				.createQuery("SELECT b FROM Bodega b WHERE b.numero=:numero", Bodega.class);
+
+		myQuery.setParameter("numero", numero);
+
+		return myQuery.getSingleResult();
+	}
+
+
 
 }
