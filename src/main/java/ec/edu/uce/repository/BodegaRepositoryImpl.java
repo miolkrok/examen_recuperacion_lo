@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import ec.edu.uce.modelo.Bodega;
-import ec.edu.uce.modelo.Producto;
 @Repository
 @Transactional
 public class BodegaRepositoryImpl implements IBodegaRepo{

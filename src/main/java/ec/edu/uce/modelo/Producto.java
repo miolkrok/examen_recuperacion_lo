@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class Producto {
 	
 	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_mod")
-	@SequenceGenerator(name = "seq_mod", sequenceName = "seq_mod", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_producto")
+	@SequenceGenerator(name = "seq_producto", sequenceName = "seq_producto", allocationSize = 1)
 	@Id
 	@Column(name="prod_id")
 	private Integer id;

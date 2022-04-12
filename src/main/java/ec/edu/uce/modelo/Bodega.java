@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,8 @@ public class Bodega {
 	@Column(name="bode_direccion")
 	private String direccion;
 	@Column(name="bode_telefonos")
-	private String telefonos;
+	@ElementCollection
+	private List<String> telefonos;
 	@OneToMany(mappedBy = "bodegaR",cascade=CascadeType.ALL)//De donde sale????
 	private List<Registro> registroB;
 	public Integer getId() {
@@ -56,10 +58,11 @@ public class Bodega {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getTelefonos() {
+
+	public List<String> getTelefonos() {
 		return telefonos;
 	}
-	public void setTelefonos(String telefonos) {
+	public void setTelefonos(List<String> telefonos) {
 		this.telefonos = telefonos;
 	}
 	public List<Registro> getRegistroB() {
