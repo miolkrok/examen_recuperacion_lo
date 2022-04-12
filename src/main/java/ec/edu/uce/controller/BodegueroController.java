@@ -73,13 +73,14 @@ public class BodegueroController {
 	}
 ///////////////////////3////////////////////////////
 	
-	@DeleteMapping("borrar/{codigoBarrasMaestro}")
-	public String eliminarProductoSinRegistro(@PathVariable("codigoBarrasMaestro")String codigoBarrasMaestro, Model modelo) {
-		this.bodegueroService.eliminarProductoSinRegistrado(codigoBarrasMaestro);
+	@DeleteMapping("borrar/{idProducto}")
+	public String eliminarProductoSinRegistro(@PathVariable("idProducto")Integer idProducto, Model modelo) {
+		this.bodegueroService.eliminarProductoSinRegistrado(idProducto);
 						
 		List<Producto> listaProductos= this.productoService.buscarProductoTodos();
 		modelo.addAttribute("productos", listaProductos);
 		return "productoInsertado";
+		
 		
 	}
 	
